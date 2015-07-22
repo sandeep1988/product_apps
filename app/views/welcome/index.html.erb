@@ -1,0 +1,43 @@
+
+<h1>Users</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Created at</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+   <tbody id="products">
+    <% @users.each do |product| %>
+    <%= render "product", :product => product %>
+    <% end %>
+  </tbody>
+</table>
+
+<%#= link_to 'Register', welcome_new_path, :remote => true, :id => "new_product_link" %>
+
+<%= form_tag("/welcome/new", method: "post") do %>
+  <%#= devise_error_messages! %>
+
+  <div class="field">
+    <%= label_tag :email %><br />
+    <%= email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= password_field_tag :password %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password_confirmation %><br />
+    <%= password_field_tag :password_confirmation  %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Sign up" %>
+  </div>
+<% end %>
