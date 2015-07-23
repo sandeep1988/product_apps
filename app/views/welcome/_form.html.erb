@@ -1,10 +1,9 @@
 <h2>Sign up</h2>
-<%= form_tag welcome_new, :remote => true do |f| %> 
+<%= form_tag welcome_new_path, :class => "reg_form", :remote => true, :method => :get  do |f| %> 
   <%#= devise_error_messages! %>
-
   <div class="field">
     <%= label_tag :email %><br />
-    <%= email_field :email, autofocus: true %>
+    <%= email_field_tag :email %>
   </div>
 
   <div class="field">
