@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
-  resources :products
-  devise_for :users
- # get 'welcome/index'
-
+  resources :holidays
+  devise_for :users, :controllers => {:registrations => "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
   # Example of regular route:
-  get 'welcome/new'
   # post 'welcome/create'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
@@ -56,6 +51,5 @@ Rails.application.routes.draw do
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  #     #   end
 end
