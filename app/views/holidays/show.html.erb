@@ -1,14 +1,26 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Holiday -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @holiday.start_date %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+  <dd><%= @holiday.start_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
+  <dd><%= @holiday.end_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:days) %>:</strong></dt>
+  <dd><%= @holiday.days %></dd>
+  <dd><%= (@holiday.end_date - @holiday.start_date).to_i %></dd>
+</dl>
 
-<p>
-  <strong>End date:</strong>
-  <%= @holiday.end_date %>
-</p>
-
-<%= link_to 'Edit', edit_holiday_path(@holiday) %> |
-<%= link_to 'Back', holidays_path %>
+<!-- <div class="form-actions">
+  <%#= link_to t('.back', :default => t("helpers.links.back")),
+              holidays_path, :class => 'btn'  %>
+  <%#= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_holiday_path(@holiday), :class => 'btn' %>
+  <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              holiday_path(@holiday),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div> -->

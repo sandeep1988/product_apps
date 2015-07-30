@@ -19,13 +19,10 @@
       <a class="brand" href="#">Some Store</a>
       <div class="nav-collapse">
         <ul class="nav">
-         <% if user_signed_in? && current_user.admin? %>
+         <% if user_signed_in? %>
         <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
         <li><%= link_to 'Apply Leave', new_holiday_path %></li>
-        <li><%= link_to 'Leave Detail', holiday_path %></li>
-          <% elsif %>
-            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-            <li><%= link_to 'Apply Leave', new_holiday_path %></li>
+        <li><%= link_to 'All Leave', holidays_path  %></li>
     <% else %>
         <li><%= link_to 'Register', new_user_registration_path %> </li> <li><%= link_to 'Sign in', new_user_session_path %></li>
     <% end %>
