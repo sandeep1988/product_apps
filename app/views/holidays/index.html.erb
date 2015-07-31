@@ -5,24 +5,28 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:employee_name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:days) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:approve) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @holidays.each do |holiday| %>
       <tr>
-        <td><%= link_to holiday.id, holiday_path(holiday) %></td>
+        <td><%= holiday.user.email %></td>
         <td><%= holiday.start_date %></td>
         <td><%= holiday.end_date %></td>
         <td><%= holiday.days %></td>
-        <td><%= holiday.user_id %></td>
-        <td><%=l holiday.created_at %></td>
+        <td><%= holiday.created_at.to_formatted_s(:long) %></td>
+        <% if holiday.approve == false %>
+          <td><%= link_to "NotApprove", holidays_approve_path(holiday), :method => :post , :class => 'btn btn-mini'%></td>
+        <% else %>
+          <td><%= link_to "Approve", holidays_approve_path(holiday), :method => :post , :class => 'btn btn-mini'%></td>
+        <% end %>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_holiday_path(holiday), :class => 'btn btn-mini' %>

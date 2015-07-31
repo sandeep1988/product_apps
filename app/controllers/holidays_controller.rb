@@ -26,7 +26,6 @@ class HolidaysController < ApplicationController
   def create
     @holiday = current_user.holidays.new(holiday_params)
     @holiday.days = (@holiday.end_date - @holiday.start_date).to_i
-
       if @holiday.save
         redirect_to roo_path
       else
@@ -57,6 +56,18 @@ class HolidaysController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def approve 
+    @approve = Holiday.find(params[:format])
+   if @approve.approve == false
+        @approve.approve = true
+         @approve.update_attributes(:approve => true)
+  else 
+        @approve.approve = false
+        @approve.update_attributes(:approve => false)
+  end
+    redirect_to holidays_path
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
