@@ -1,28 +1,22 @@
 == README
+Steps 
+=> Firstly we install rvm,ruby,rails in machine,
+=> create rails new app_name (create rails apps) with sqlite3 Database
+=> install "device" gem in rails for Flexible authentication solution.
+=> make rake db:create and rake db:migrate
+=> add admin field in User model as boolean type default type false for user and true for admin (user type)
+and check candition for admin 
+=> create the model Holidays with start and end date with days field as integer for count leave, approve field (boolean) true for approve and flase for disapprove.
+=> if current user admin then he/she can approve and disapprove the leave and destroy the leave
+	and if current user in employee he/she can apply for leave and see is it approve or not. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+****************************************************
+Validation
+ 
+=> start date is always less then end date  
+=> employee can not take leave more then 30 days or month
+=> zero is not a type of leave day
+*****************************************************
+Run serve
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+run =>  rails s  command for run server
