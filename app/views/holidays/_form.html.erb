@@ -1,7 +1,8 @@
 <%= form_for @holiday, :html => { :class => 'form-horizontal' } do |f| %>
- <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div><br></br>
-  <% end %>
+   <% if flash[:notice] %>
+        <div class="text-error controls"><%= flash[:notice] %></div><br></br>
+    <% end %>
+
   <div class="control-group">
     <%= f.label :start_date, :class => 'control-label' %>
     <div class="controls">
