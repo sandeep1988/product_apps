@@ -10,6 +10,9 @@
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:days) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+       <% if user_signed_in? && current_user.admin == false %>
+        <th><%= model_class.human_attribute_name(:approveed) %></th>
+       <% end %>
       <% if user_signed_in? && current_user.admin == true %>
         <th><%= model_class.human_attribute_name(:approve) %></th>
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -24,6 +27,13 @@
         <td><%= holiday.end_date %></td>
         <td><%= holiday.days %></td>
         <td><%= holiday.created_at.to_formatted_s(:long) %></td>
+        <% if user_signed_in? && current_user.admin == false %>
+          <%  if  holiday.approve == true %>
+              <td>Approve</td>
+            <% else %>
+              <td>Disapprove</td>
+            <% end %>
+        <% end %>
         <% if user_signed_in? && current_user.admin == true %>
             <% if holiday.approve == false %>
               <td><%= link_to "NotApprove", holidays_approve_path(holiday), :method => :post , :class => 'btn btn-mini'%></td>
@@ -45,6 +55,3 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_holiday_path,
-            :class => 'btn btn-primary' %>

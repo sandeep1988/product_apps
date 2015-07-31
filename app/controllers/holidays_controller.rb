@@ -26,7 +26,7 @@ class HolidaysController < ApplicationController
   def create
     @holiday = current_user.holidays.new(holiday_params)
     if (@holiday.end_date - @holiday.start_date).to_i > 30
-      flash[:notice] = "You Couldn't take More then One month leave"
+      flash[:notice] = "You Couldn't take More leave then One month"
       render :action => 'new'
     elsif (@holiday.end_date - @holiday.start_date).to_i == 0
           flash[:notice] = "Leave days Could'n be zero or less"
