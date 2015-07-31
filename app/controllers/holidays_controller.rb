@@ -25,12 +25,14 @@ class HolidaysController < ApplicationController
   # POST /holidays.json
   def create
     @holiday = current_user.holidays.new(holiday_params)
-    @holiday.days = (@holiday.end_date - @holiday.start_date).to_i
-      if @holiday.save
-        redirect_to roo_path
-      else
-        render :action => 'new'
-      end
+    if (@holiday.end_date - @holiday.start_date).to_i > 30
+      flash[:notice] = "You Couldn't take More then One month leave"
+      render :action => 'new'
+    else 
+      @holiday.days = (@holiday.end_date - @holiday.start_date).to_i
+      @holiday.save
+        redirect_to root_path
+    end
   end
 
   # PATCH/PUT /holidays/1
