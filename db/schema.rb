@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730152641) do
+ActiveRecord::Schema.define(version: 20150731063750) do
 
   create_table "holidays", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "days"
     t.integer  "user_id"
+    t.boolean  "approve",    default: false
   end
 
   create_table "leaves", force: :cascade do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150730152641) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
+    t.boolean  "approve",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
