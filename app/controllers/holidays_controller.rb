@@ -28,10 +28,16 @@ class HolidaysController < ApplicationController
     if (@holiday.end_date - @holiday.start_date).to_i > 30
       flash[:notice] = "You Couldn't take More then One month leave"
       render :action => 'new'
+    elsif (@holiday.end_date - @holiday.start_date).to_i == 0
+          flash[:notice] = "Leave days Could'n be zero or less"
+      render :action => 'new'
+    elsif @holiday.start_date > @holiday.end_date
+          flash[:notice] = "Please Select Valid date"
+          render :action => 'new'
     else 
       @holiday.days = (@holiday.end_date - @holiday.start_date).to_i
       @holiday.save
-        redirect_to root_path
+        redirect_to holidays_path
     end
   end
 
